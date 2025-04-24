@@ -3,11 +3,25 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #5e52eb;
+  --primary-foreground: #ffffff;
+  --secondary: #19c2a6;
+  --secondary-foreground: #ffffff;
+  --accent: #ff5778;
+  --accent-foreground: #ffffff;
+  --muted: #f9f9fa;
+  --muted-foreground: #5e636e;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --border: #e2e8f0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,11 +30,89 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #6366f1;
+    --primary-foreground: #ffffff;
+    --secondary: #14b8a6;
+    --secondary-foreground: #ffffff;
+    --accent: #f43f5e;
+    --accent-foreground: #ffffff;
+    --muted: #1d1d1f;
+    --muted-foreground: #a1a1aa;
+    --card: #171717;
+    --card-foreground: #ededed;
+    --border: #2d3748;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Animations */
+@keyframes blob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animate-blink {
+  animation: blink 0.8s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Gradient Text */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Focus outline */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
